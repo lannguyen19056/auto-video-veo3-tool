@@ -1,0 +1,48 @@
+---
+import '../styles/global.css';
+
+const { title = 'Auto Video', description = 'Build complete AI videos from a single prompt.' } = Astro.props;
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/create', label: 'Create' },
+  { href: '/demos', label: 'Demos' },
+  { href: '/how-it-works', label: 'How It Works' },
+  { href: '/testimonials', label: 'Testimonials' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/faq', label: 'FAQ' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' }
+];
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav-wrap">
+        <a class="logo" href="/">Auto Video</a>
+        <nav>
+          <ul>
+            {links.map((link) => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <p>© {new Date().getFullYear()} Auto Video. No login required.</p>
+      </div>
+    </footer>
+  </body>
+</html>

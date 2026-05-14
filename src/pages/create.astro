@@ -1,0 +1,67 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Create Video Mock | Auto Video">
+  <section class="panel">
+    <h1>Mock Video Generator</h1>
+    <p>Try the end-to-end experience with a simulated rendering process.</p>
+    <form id="mock-form">
+      <label>
+        Your prompt
+        <textarea id="prompt" rows="4" required placeholder="Create a 30-second launch video for a productivity app"></textarea>
+      </label>
+      <label>
+        Style
+        <select id="style">
+          <option>Modern Product Ad</option>
+          <option>Storytelling Documentary</option>
+          <option>Minimal Corporate</option>
+        </select>
+      </label>
+      <button class="button" type="submit">Generate Mock Video</button>
+    </form>
+    <p class="progress" id="progress"></p>
+    <section id="mock-output" class="mock-output card">
+      <h2>Mock video ready</h2>
+      <div class="mock-video">Your AI Video Preview</div>
+      <p id="summary"></p>
+      <p><a href="/demos">Explore more real demos</a></p>
+    </section>
+  </section>
+
+  <script>
+    const form = document.getElementById('mock-form');
+    const progress = document.getElementById('progress');
+    const output = document.getElementById('mock-output');
+    const summary = document.getElementById('summary');
+
+    const steps = ['Analyzing prompt...', 'Writing script...', 'Generating scenes...', 'Adding voice-over...', 'Finalizing video...'];
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!(progress && output && summary)) return;
+
+      const prompt = document.getElementById('prompt');
+      const style = document.getElementById('style');
+      const promptText = prompt instanceof HTMLTextAreaElement ? prompt.value.trim() : '';
+      const styleText = style instanceof HTMLSelectElement ? style.value : 'Default';
+      output.classList.remove('ready');
+
+      let index = 0;
+      progress.textContent = steps[index];
+      const timer = setInterval(() => {
+        index += 1;
+        if (index < steps.length) {
+          progress.textContent = steps[index];
+          return;
+        }
+
+        clearInterval(timer);
+        progress.textContent = 'Done!';
+        output.classList.add('ready');
+        summary.textContent = `Prompt: "${promptText}" | Style: ${styleText} | Estimated duration: 30s`;
+      }, 700);
+    });
+  </script>
+</MainLayout>
