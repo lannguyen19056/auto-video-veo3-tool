@@ -1,0 +1,62 @@
+:root {
+  --bg: #0b1020;
+  --card: #131a2b;
+  --text: #f0f3ff;
+  --muted: #aeb7d8;
+  --accent: #7c9cff;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: linear-gradient(180deg, #0b1020, #080b14);
+  color: var(--text);
+}
+
+.container { width: min(1100px, 92vw); margin: 0 auto; }
+.site-header, .site-footer { background: rgba(8, 11, 20, 0.8); border-bottom: 1px solid #1f2742; }
+.site-footer { border-top: 1px solid #1f2742; border-bottom: 0; margin-top: 2rem; }
+.nav-wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.9rem 0; }
+.logo { font-weight: 800; color: var(--text); text-decoration: none; }
+nav ul { display: flex; flex-wrap: wrap; gap: 0.8rem; list-style: none; margin: 0; padding: 0; }
+nav a { color: var(--muted); text-decoration: none; font-size: 0.95rem; }
+nav a:hover { color: var(--text); }
+
+main { padding: 2rem 0 1.5rem; }
+.hero, .panel { background: var(--card); border: 1px solid #222a46; border-radius: 16px; padding: 1.5rem; }
+.hero h1 { margin-top: 0.2rem; font-size: clamp(1.8rem, 4vw, 3rem); }
+.tag { color: #b7c6ff; font-size: 0.85rem; letter-spacing: 0.07em; text-transform: uppercase; }
+.button { display: inline-block; background: var(--accent); color: #0a0f1f; text-decoration: none; font-weight: 700; padding: 0.7rem 1rem; border-radius: 10px; border: 0; cursor: pointer; }
+.button-secondary { background: transparent; color: var(--text); border: 1px solid #33406d; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem; }
+.card { background: var(--card); border: 1px solid #222a46; border-radius: 14px; padding: 1rem; }
+.card p, p { color: var(--muted); line-height: 1.6; }
+h2, h3 { margin-bottom: 0.4rem; }
+
+form { display: grid; gap: 0.75rem; }
+input, textarea, select {
+  width: 100%;
+  background: #0b1020;
+  color: var(--text);
+  border: 1px solid #32406b;
+  border-radius: 10px;
+  padding: 0.7rem;
+}
+
+.progress { font-size: 0.95rem; color: #b7c6ff; min-height: 1.5rem; }
+.mock-output { margin-top: 0.75rem; display: none; }
+.mock-output.ready { display: block; }
+.mock-video {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #1e2a4c, #3f64d9);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+}
+
+a { color: #9fb4ff; }

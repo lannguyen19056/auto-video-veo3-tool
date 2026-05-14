@@ -1,0 +1,25 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+---
+
+<MainLayout title="Contact | Auto Video">
+  <h1>Contact Us</h1>
+  <section class="panel">
+    <p>Send your request directly to our team.</p>
+    <form action="mailto:admin@autovideo.videi" method="post" enctype="text/plain">
+      <label>
+        Name
+        <input name="name" type="text" required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" required />
+      </label>
+      <label>
+        Project goals
+        <textarea name="message" rows="5" required placeholder="Tell us what kind of video flow you want to automate"></textarea>
+      </label>
+      <button class="button" type="submit">Send to admin@autovideo.videi</button>
+    </form>
+  </section>
+</MainLayout>
