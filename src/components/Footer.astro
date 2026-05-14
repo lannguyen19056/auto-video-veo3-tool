@@ -1,0 +1,36 @@
+---
+const footerLinks = [
+  { href: "/workflow", label: "Workflow" },
+  { href: "/use-cases", label: "Use Cases" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/resources", label: "Resources" },
+];
+---
+
+<div class="footer-grid">
+  <div>
+    <div class="brand">
+      <span>AutoVideo</span>
+      <small>AI Studio</small>
+    </div>
+    <p>Build complete video narratives from a single prompt. No login required. Instant mock previews for fast feedback.</p>
+  </div>
+  <div>
+    <h4>Explore</h4>
+    <div class="steps">
+      {footerLinks.map((link) => (
+        <a href={link.href}>{link.label}</a>
+      ))}
+    </div>
+  </div>
+  <div>
+    <h4>Contact</h4>
+    <p>Email: <a href="mailto:admin@autovideo.videi">admin@autovideo.videi</a></p>
+    <p>Location: Remote-first creative lab</p>
+    <div class="taglist">
+      <span class="tag">No login</span>
+      <span class="tag">Cloudflare ready</span>
+      <span class="tag">Mock workflow</span>
+    </div>
+  </div>
+</div>

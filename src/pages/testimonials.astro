@@ -1,0 +1,56 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Customer Reviews" description="Hear how creative teams use AutoVideo to align faster.">
+  <section class="hero">
+    <div class="container">
+      <span class="badge">4.9 / 5 average rating</span>
+      <h1>Trusted by creative teams worldwide.</h1>
+      <p>From agencies to in-house studios, AutoVideo brings confidence to the first draft.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid">
+      {[
+        {
+          quote: "AutoVideo gave us the confidence to pitch three concepts in one afternoon.",
+          name: "Jules M.",
+          role: "Agency Producer",
+        },
+        {
+          quote: "The mock process lets marketing and product finally speak the same language.",
+          name: "Sofia D.",
+          role: "Brand Manager",
+        },
+        {
+          quote: "We love the clear steps. It feels like a guided creative director.",
+          name: "Theo B.",
+          role: "Video Lead",
+        },
+        {
+          quote: "Our client approvals went from 2 weeks to 2 days.",
+          name: "Rina K.",
+          role: "Creative Strategist",
+        },
+        {
+          quote: "The demo library sparks ideas when the brief is still vague.",
+          name: "Carlos P.",
+          role: "Studio Owner",
+        },
+        {
+          quote: "Mock exports keep our editors focused on what matters: the final polish.",
+          name: "Elena S.",
+          role: "Post-Production",
+        },
+      ].map((item) => (
+        <div class="card">
+          <div class="quote">“{item.quote}”</div>
+          <strong>{item.name}</strong>
+          <p>{item.role}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Contact" description="Contact AutoVideo to share a prompt or request a custom demo.">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">Contact</span>
+        <h1>Let’s craft your next mock video.</h1>
+        <p>Send your idea and we’ll respond with a custom mock preview outline.</p>
+        <p>Email us directly at <a href="mailto:admin@autovideo.videi">admin@autovideo.videi</a>.</p>
+      </div>
+      <div class="hero-card">
+        <h3>Send a message</h3>
+        <form class="form" action="mailto:admin@autovideo.videi" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Your name" aria-label="Your name" />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email address" />
+          <textarea name="message" rows="4" placeholder="Tell us about your video goal" aria-label="Message"></textarea>
+          <button class="button primary" type="submit">Send to admin@autovideo.videi</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container grid">
+      <div class="card">
+        <h3>Response time</h3>
+        <p>We typically respond within one business day.</p>
+      </div>
+      <div class="card">
+        <h3>Demo requests</h3>
+        <p>Include your target audience, length, and tone for best results.</p>
+      </div>
+      <div class="card">
+        <h3>Partnerships</h3>
+        <p>We work with agencies and internal studios to scale mock output.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

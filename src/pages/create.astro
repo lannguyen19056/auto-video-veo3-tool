@@ -1,0 +1,71 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Mock Creation" description="Walk through the AutoVideo mock pipeline and preview every step before production.">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">Mock mode only</span>
+        <h1>Build a complete video mock in minutes.</h1>
+        <p>
+          This flow is a safe preview. No login, no render credits, and no production export.
+          Use it to align your team before filming.
+        </p>
+        <a class="button primary" href="/contact">Send us your prompt</a>
+      </div>
+      <div class="hero-card">
+        <h3>Prompt lab</h3>
+        <p>Share your idea and let AutoVideo structure it into a story.</p>
+        <form class="form">
+          <input type="text" placeholder="Project name" aria-label="Project name" />
+          <textarea rows="4" placeholder="Describe the video goal and mood" aria-label="Video description"></textarea>
+          <button class="button secondary" type="button">Generate mock preview</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span>Pipeline</span>
+        <h2>Mock generation timeline</h2>
+      </div>
+      <div class="steps">
+        <div class="step"><span>1. Prompt analysis + audience tagging</span><strong>00:45</strong></div>
+        <div class="step"><span>2. Script outline with CTA and voice cues</span><strong>01:30</strong></div>
+        <div class="step"><span>3. Storyboard + shot list build</span><strong>02:20</strong></div>
+        <div class="step"><span>4. AI voice & music preview</span><strong>03:10</strong></div>
+        <div class="step"><span>5. Mock playback deck</span><strong>03:45</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span>What you get</span>
+        <h2>Downloadable assets for your creative team.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Script draft</h3>
+          <p>Full narration and on-screen text suggestions for every scene.</p>
+        </div>
+        <div class="card">
+          <h3>Storyboard frames</h3>
+          <p>Shot-by-shot guidance, camera notes, and visual references.</p>
+        </div>
+        <div class="card">
+          <h3>Timing map</h3>
+          <p>A pacing sheet to keep each segment on track.</p>
+        </div>
+        <div class="card">
+          <h3>Mock audio mix</h3>
+          <p>Temporary voice and music track to validate tone.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

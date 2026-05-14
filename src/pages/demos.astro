@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Demo Gallery" description="Explore multiple mock demos from AutoVideo and imagine what your prompt could become.">
+  <section class="hero">
+    <div class="container">
+      <span class="badge">Demo library</span>
+      <h1>Explore mock video demos.</h1>
+      <p>Each demo shows how AutoVideo turns a prompt into a storyboard, voice preview, and animated draft.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid">
+        {[
+          "Fintech product launch",
+          "Luxury travel reel",
+          "EdTech explainer",
+          "Fashion lookbook",
+          "Wellness app intro",
+          "Nonprofit impact story",
+          "Sports highlight recap",
+          "Smart home reveal",
+        ].map((title) => (
+          <div class="card">
+            <div class="video-tile">Demo Preview</div>
+            <h3>{title}</h3>
+            <p>Prompt-driven mock with script, visuals, and music timing.</p>
+            <span class="badge">3 min mock</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

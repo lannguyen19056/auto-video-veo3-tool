@@ -1,0 +1,37 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import Footer from "../components/Footer.astro";
+
+const { title, description } = Astro.props;
+const pageTitle = title ? `${title} | AutoVideo` : "AutoVideo";
+const pageDescription = description ?? "AutoVideo turns prompts into ready-to-share videos with AI-driven story, visuals, and sound.";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <Nav />
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="container">
+        <Footer />
+      </div>
+    </footer>
+  </body>
+</html>

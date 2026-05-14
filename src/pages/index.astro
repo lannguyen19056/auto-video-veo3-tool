@@ -1,17 +1,114 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="AI Video Studio" description="AutoVideo turns a single prompt into a complete video package with script, scenes, voice, and music.">
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="badge">No login • Mocked generation</span>
+        <h1>Turn one prompt into a finished video story.</h1>
+        <p>
+          AutoVideo is a creative AI studio that drafts your script, storyboard, voice, and motion in minutes.
+          Share mock previews instantly and refine before production.
+        </p>
+        <div class="taglist" style="margin: 1.5rem 0;">
+          <span class="tag">English-first</span>
+          <span class="tag">Multiple demos</span>
+          <span class="tag">Cloudflare ready</span>
+        </div>
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+          <a class="button primary" href="/create">Start a mock build</a>
+          <a class="button secondary" href="/demos">See demo gallery</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Live mock session</h3>
+        <p>Prompt: “Launch a futuristic smart bike in Tokyo.”</p>
+        <div class="steps" style="margin-top: 1.5rem;">
+          <div class="step"><span>Script & hook</span><strong>done</strong></div>
+          <div class="step"><span>Scene layout</span><strong>done</strong></div>
+          <div class="step"><span>Voice & music</span><strong>processing</strong></div>
+          <div class="step"><span>Export preview</span><strong>queued</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span>Why AutoVideo</span>
+        <h2>Everything you need to mock a full video in one place.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>Prompt-to-Storyboard</h3>
+          <p>Generate structured scenes with shots, pacing, and transitions from a single sentence.</p>
+        </div>
+        <div class="card">
+          <h3>AI Voice & Music</h3>
+          <p>Hear a draft voiceover and soundtrack instantly to validate tone before production.</p>
+        </div>
+        <div class="card">
+          <h3>Instant Previews</h3>
+          <p>Share mock previews for stakeholder approval without touching a timeline editor.</p>
+        </div>
+        <div class="card">
+          <h3>No Login Required</h3>
+          <p>Start exploring immediately. Every flow here is a safe, non-production mock.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span>Mock Creation Flow</span>
+        <h2>Preview every step before you render the final video.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <h3>1. Prompt intake</h3>
+          <p>Describe the goal, style, audience, and duration. AutoVideo structures it automatically.</p>
+        </div>
+        <div class="card">
+          <h3>2. AI script pass</h3>
+          <p>Receive a full script with hooks, pacing, and a clear CTA.</p>
+        </div>
+        <div class="card">
+          <h3>3. Scene rehearsal</h3>
+          <p>Get a visual storyboard and camera directions for every scene.</p>
+        </div>
+        <div class="card">
+          <h3>4. Mock playback</h3>
+          <p>Play a low-latency preview with temporary audio and subtitles.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-title">
+        <span>Customer sentiment</span>
+        <h2>Teams love the fast mock feedback loop.</h2>
+      </div>
+      <div class="grid">
+        <div class="card">
+          <div class="quote">“We validated our product launch video in 15 minutes. The mock felt real enough to brief production.”</div>
+          <strong>— Talia P., Growth Lead</strong>
+        </div>
+        <div class="card">
+          <div class="quote">“AutoVideo helped us align five stakeholders on tone before filming a single frame.”</div>
+          <strong>— Mark R., Creative Director</strong>
+        </div>
+        <div class="card">
+          <div class="quote">“The demo prompts are priceless. We finally show clients something tangible in the first call.”</div>
+          <strong>— Amina L., Studio Owner</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
