@@ -2,25 +2,786 @@
 import MainLayout from '../layouts/MainLayout.astro';
 ---
 
-<MainLayout title="Create Video | Auto Video">
-  <section class="panel">
-    <h1>Create Your Next Video</h1>
-    <p>Join us in automating video creation. Share your requirements and we'll help you get started with Auto Video.</p>
-    <form action="mailto:admin@autovideo.video" method="post" enctype="text/plain">
-      <label>
-        Your Name
-        <input name="name" type="text" required />
-      </label>
-      <label>
-        Email Address
-        <input name="email" type="email" required />
-      </label>
-      <label>
-        Video Project Description
-        <textarea name="message" rows="6" required placeholder="Describe the type of video you want to create and your goals"></textarea>
-      </label>
-      <button class="button" type="submit">Request Early Access</button>
-    </form>
-    <p class="text-note">We'll get back to you typically within 1-2 business days to discuss your project needs.</p>
+<MainLayout title="Create Video Mock | Auto Video">
+  <section class="create-container">
+    <div class="create-header">
+      <h1>AI Video Generator</h1>
+      <p class="subtitle">Describe your idea and watch AI build a complete video concept in seconds.</p>
+    </div>
+
+    <div class="create-grid">
+      <div class="form-section">
+        <form id="mock-form">
+          <div class="form-group">
+            <label for="prompt">
+              <span class="label-text">Your Video Idea</span>
+              <span class="label-hint">Be specific about your goal, audience, and key message</span>
+            </label>
+            <textarea
+              id="prompt"
+              rows="5"
+              required
+              placeholder="Example: Create a 30-second product launch video for a new project management app. Target busy professionals. Use upbeat, modern tone with quick cuts and smooth transitions."
+            ></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="style">
+                <span class="label-text">Video Style</span>
+              </label>
+              <select id="style">
+                <option>Modern Product Ad</option>
+                <option>Storytelling Documentary</option>
+                <option>Minimal Corporate</option>
+                <option>Energetic Social Media</option>
+                <option>Professional Explainer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="duration">
+                <span class="label-text">Duration</span>
+              </label>
+              <select id="duration">
+                <option>15 seconds</option>
+                <option selected>30 seconds</option>
+                <option>45 seconds</option>
+                <option>60 seconds</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="button button-primary" type="submit" id="generate-btn">
+              <span id="btn-text">Generate Video</span>
+            </button>
+            <button class="button button-secondary" type="reset" id="reset-btn">Clear</button>
+          </div>
+        </form>
+
+        <div class="quick-examples">
+          <p class="examples-label">Quick start:</p>
+          <div class="example-buttons">
+            <button class="example-btn" data-prompt="Create a 30-second SaaS product demo video showing how our CRM helps sales teams close deals faster. Modern, energetic style with quick cuts." data-style="Modern Product Ad" data-duration="30 seconds">
+              SaaS Demo
+            </button>
+            <button class="example-btn" data-prompt="Make a 45-second travel video about hidden beaches in Southeast Asia. Beautiful, cinematic storytelling with nature sounds." data-style="Storytelling Documentary" data-duration="45 seconds">
+              Travel Story
+            </button>
+            <button class="example-btn" data-prompt="Design a 15-second fitness challenge announcement video. High energy, motivational, with trending audio and text overlays." data-style="Energetic Social Media" data-duration="15 seconds">
+              Fitness Ad
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-section">
+        <div id="mock-output" class="mock-output hidden">
+          <div class="output-header">
+            <h2>✨ Your Video Concept</h2>
+            <p class="output-subtitle">Here's what your AI-generated video will look like:</p>
+          </div>
+
+          <div class="video-preview-wrapper">
+            <div class="mock-video-container">
+              <div class="mock-video">
+                <div class="video-placeholder">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                  </svg>
+                  <p>AI Video Preview</p>
+                </div>
+              </div>
+              <div class="video-meta">
+                <div class="meta-row">
+                  <span class="meta-label">Duration:</span>
+                  <span class="meta-value" id="output-duration">30s</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Style:</span>
+                  <span class="meta-value" id="output-style">Modern Product Ad</span>
+                </div>
+                <div class="meta-row">
+                  <span class="meta-label">Status:</span>
+                  <span class="meta-value status-ready">Ready to Export</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="output-details">
+            <h3>Video Breakdown</h3>
+            <div class="breakdown-items">
+              <div class="breakdown-item">
+                <span class="item-label">🎬 Scene 1</span>
+                <span class="item-desc" id="scene1">Intro with hook</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="item-label">🎤 Voice-Over</span>
+                <span class="item-desc" id="voiceover">Professional narrator</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="item-label">🎵 Audio</span>
+                <span class="item-desc" id="audio">Upbeat background music</span>
+              </div>
+              <div class="breakdown-item">
+                <span class="item-label">✂️ Pacing</span>
+                <span class="item-desc" id="pacing">Fast cuts, smooth transitions</span>
+              </div>
+            </div>
+
+            <div class="output-prompt">
+              <h3>Your Prompt</h3>
+              <p id="summary-prompt"></p>
+            </div>
+          </div>
+
+          <div class="output-actions">
+            <button class="button button-primary" id="regenerate-btn">↻ Regenerate Different Concept</button>
+            <button class="button button-secondary" id="modify-btn">✎ Modify & Regenerate</button>
+            <a href="/demos" class="button button-secondary">View Real Demo Gallery</a>
+          </div>
+        </div>
+
+        <div id="loading-state" class="loading-state hidden">
+          <div class="loading-spinner"></div>
+          <div class="progress-steps">
+            <p class="progress-text" id="progress"></p>
+            <div class="progress-bar">
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <div id="empty-state" class="empty-state">
+          <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+            <path d="M7 2v20"></path>
+            <path d="M17 2v20"></path>
+            <path d="M2 12h20"></path>
+            <path d="M2 7h20"></path>
+            <path d="M2 17h20"></path>
+          </svg>
+          <p>Your video concept will appear here</p>
+        </div>
+      </div>
+    </div>
   </section>
+
+  <style>
+    .create-container {
+      max-width: 1300px;
+    }
+
+    .create-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .create-header h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin: 0 0 0.5rem 0;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .create-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .create-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-section {
+      background: var(--card);
+      border: 1px solid #222a46;
+      border-radius: 16px;
+      padding: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+    }
+
+    .label-text {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .label-hint {
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-weight: normal;
+    }
+
+    #prompt,
+    #style,
+    #duration {
+      background: #0b1020;
+      color: var(--text);
+      border: 1px solid #32406b;
+      border-radius: 10px;
+      padding: 0.8rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    #prompt:focus,
+    #style:focus,
+    #duration:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(124, 156, 255, 0.1);
+    }
+
+    #prompt {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-actions {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    #generate-btn {
+      flex: 1;
+      font-weight: 700;
+    }
+
+    #reset-btn {
+      padding: 0.7rem 1rem;
+    }
+
+    .quick-examples {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #222a46;
+    }
+
+    .examples-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      margin: 0 0 0.75rem 0;
+    }
+
+    .example-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .example-btn {
+      padding: 0.6rem 0.9rem;
+      background: rgba(124, 156, 255, 0.1);
+      border: 1px solid rgba(124, 156, 255, 0.2);
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.85rem;
+      text-align: left;
+      transition: all 0.2s;
+    }
+
+    .example-btn:hover {
+      background: rgba(124, 156, 255, 0.15);
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+
+    .preview-section {
+      position: sticky;
+      top: 1rem;
+    }
+
+    .mock-output {
+      background: var(--card);
+      border: 1px solid #222a46;
+      border-radius: 16px;
+      padding: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .mock-output.hidden {
+      display: none;
+    }
+
+    .mock-output.ready {
+      display: block;
+      animation: slideInUp 0.5s ease;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .output-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .output-header h2 {
+      margin: 0 0 0.25rem 0;
+      font-size: 1.5rem;
+    }
+
+    .output-subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .video-preview-wrapper {
+      margin-bottom: 1.5rem;
+    }
+
+    .mock-video-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .mock-video {
+      width: 100%;
+      height: 240px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1e2a4c 0%, #3f64d9 100%);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mock-video::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.05) 49%, rgba(255, 255, 255, 0.05) 51%, transparent 52%);
+      background-size: 20px 20px;
+      opacity: 0.5;
+    }
+
+    .video-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      position: relative;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .video-placeholder p {
+      margin: 0;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .video-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem;
+      background: rgba(124, 156, 255, 0.05);
+      border: 1px solid rgba(124, 156, 255, 0.1);
+      border-radius: 8px;
+      font-size: 0.85rem;
+    }
+
+    .meta-label {
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .meta-value {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .status-ready {
+      color: #5ec98f;
+    }
+
+    .output-details {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #222a46;
+    }
+
+    .output-details h3 {
+      margin: 0 0 0.75rem 0;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    .breakdown-items {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .breakdown-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0.75rem;
+      background: rgba(124, 156, 255, 0.05);
+      border-radius: 8px;
+      border: 1px solid rgba(124, 156, 255, 0.1);
+    }
+
+    .item-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .item-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .output-prompt {
+      background: rgba(124, 156, 255, 0.05);
+      border: 1px solid rgba(124, 156, 255, 0.1);
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .output-prompt h3 {
+      margin: 0 0 0.5rem 0;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+    }
+
+    #summary-prompt {
+      margin: 0;
+      font-size: 0.85rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    .output-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #222a46;
+    }
+
+    .output-actions .button {
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .loading-state {
+      background: var(--card);
+      border: 1px solid #222a46;
+      border-radius: 16px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .loading-state.hidden {
+      display: none;
+    }
+
+    .loading-spinner {
+      width: 48px;
+      height: 48px;
+      margin: 0 auto 1.5rem;
+      border: 3px solid rgba(124, 156, 255, 0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .progress-steps {
+      margin-top: 1.5rem;
+    }
+
+    .progress-text {
+      margin: 0 0 0.75rem 0;
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 4px;
+      background: rgba(124, 156, 255, 0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), #5ec98f);
+      border-radius: 2px;
+      transition: width 0.3s ease;
+    }
+
+    .empty-state {
+      background: var(--card);
+      border: 2px dashed #222a46;
+      border-radius: 16px;
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state svg {
+      display: block;
+      margin: 0 auto 1rem;
+      opacity: 0.5;
+    }
+
+    .empty-state p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+  </style>
+
+  <script>
+    const form = document.getElementById('mock-form');
+    const progress = document.getElementById('progress');
+    const progressFill = document.getElementById('progress-fill');
+    const output = document.getElementById('mock-output');
+    const loadingState = document.getElementById('loading-state');
+    const emptyState = document.getElementById('empty-state');
+    const generateBtn = document.getElementById('generate-btn');
+    const resetBtn = document.getElementById('reset-btn');
+    const regenerateBtn = document.getElementById('regenerate-btn');
+    const modifyBtn = document.getElementById('modify-btn');
+    const exampleBtns = document.querySelectorAll('.example-btn');
+
+    const steps = [
+      'Analyzing your prompt...',
+      'Writing script & dialogue...',
+      'Planning visual scenes...',
+      'Generating voice-over...',
+      'Adding music & sound effects...',
+      'Creating transitions...',
+      'Finalizing video...'
+    ];
+
+    function generateMockContent(promptText, styleText, durationText) {
+      const styles = {
+        'Modern Product Ad': {
+          scene1: 'Fast-paced intro with product reveal',
+          voiceover: 'Energetic narrator with professional tone',
+          audio: 'Upbeat electronic music with sound effects',
+          pacing: 'Quick cuts every 2-3 seconds'
+        },
+        'Storytelling Documentary': {
+          scene1: 'Cinematic opening shot with context',
+          voiceover: 'Warm, conversational narrator',
+          audio: 'Ambient background with emotional music',
+          pacing: 'Smooth, flowing transitions'
+        },
+        'Minimal Corporate': {
+          scene1: 'Clean, simple intro slide',
+          voiceover: 'Professional, authoritative tone',
+          audio: 'Subtle corporate background music',
+          pacing: 'Clear, measured transitions'
+        },
+        'Energetic Social Media': {
+          scene1: 'Eye-catching hook with trending audio',
+          voiceover: 'Casual, upbeat narrator',
+          audio: 'Trending music with sound effects',
+          pacing: 'Fast cuts with strong beat drops'
+        },
+        'Professional Explainer': {
+          scene1: 'Title slide with clear branding',
+          voiceover: 'Clear, instructional narrator',
+          audio: 'Clean, professional background music',
+          pacing: 'Synchronized with key points'
+        }
+      };
+
+      const content = styles[styleText] || styles['Modern Product Ad'];
+      document.getElementById('scene1').textContent = content.scene1;
+      document.getElementById('voiceover').textContent = content.voiceover;
+      document.getElementById('audio').textContent = content.audio;
+      document.getElementById('pacing').textContent = content.pacing;
+    }
+
+    function showGeneration(promptText, styleText, durationText) {
+      emptyState.style.display = 'none';
+      loadingState.classList.remove('hidden');
+      output.classList.remove('ready');
+
+      let index = 0;
+      const progressFillElement = document.getElementById('progress-fill');
+      const progressTextElement = document.getElementById('progress');
+
+      const updateProgress = () => {
+        const percent = ((index + 1) / steps.length) * 100;
+        progressFillElement.style.width = percent + '%';
+        progressTextElement.textContent = steps[index];
+      };
+
+      updateProgress();
+
+      const timer = setInterval(() => {
+        index += 1;
+        if (index < steps.length) {
+          updateProgress();
+          return;
+        }
+
+        clearInterval(timer);
+        progressTextElement.textContent = '✓ Complete!';
+        progressFillElement.style.width = '100%';
+
+        // Show output after a short delay
+        setTimeout(() => {
+          loadingState.classList.add('hidden');
+          output.classList.add('ready');
+
+          // Update output content
+          document.getElementById('output-duration').textContent = durationText.split(' ')[0];
+          document.getElementById('output-style').textContent = styleText;
+          document.getElementById('summary-prompt').textContent = promptText;
+
+          generateMockContent(promptText, styleText, durationText);
+        }, 400);
+      }, 600);
+    }
+
+    form?.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const promptEl = document.getElementById('prompt');
+      const styleEl = document.getElementById('style');
+      const durationEl = document.getElementById('duration');
+
+      const promptText = promptEl instanceof HTMLTextAreaElement ? promptEl.value.trim() : '';
+      const styleText = styleEl instanceof HTMLSelectElement ? styleEl.value : 'Modern Product Ad';
+      const durationText = durationEl instanceof HTMLSelectElement ? durationEl.value : '30 seconds';
+
+      if (!promptText) return;
+
+      generateBtn.disabled = true;
+      generateBtn.style.opacity = '0.6';
+
+      showGeneration(promptText, styleText, durationText);
+
+      setTimeout(() => {
+        generateBtn.disabled = false;
+        generateBtn.style.opacity = '1';
+      }, steps.length * 600 + 400);
+    });
+
+    resetBtn?.addEventListener('click', () => {
+      emptyState.style.display = 'block';
+      output.classList.remove('ready');
+      loadingState.classList.add('hidden');
+    });
+
+    regenerateBtn?.addEventListener('click', () => {
+      const promptEl = document.getElementById('prompt');
+      const styleEl = document.getElementById('style');
+      const durationEl = document.getElementById('duration');
+
+      const promptText = promptEl instanceof HTMLTextAreaElement ? promptEl.value.trim() : '';
+      const styleText = styleEl instanceof HTMLSelectElement ? styleEl.value : 'Modern Product Ad';
+      const durationText = durationEl instanceof HTMLSelectElement ? durationEl.value : '30 seconds';
+
+      showGeneration(promptText, styleText, durationText);
+    });
+
+    modifyBtn?.addEventListener('click', () => {
+      document.getElementById('prompt').focus();
+      document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+    });
+
+    exampleBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const prompt = btn.dataset.prompt;
+        const style = btn.dataset.style;
+        const duration = btn.dataset.duration;
+
+        const promptEl = document.getElementById('prompt');
+        const styleEl = document.getElementById('style');
+        const durationEl = document.getElementById('duration');
+
+        if (promptEl instanceof HTMLTextAreaElement) {
+          promptEl.value = prompt || '';
+        }
+        if (styleEl instanceof HTMLSelectElement) {
+          styleEl.value = style || '';
+        }
+        if (durationEl instanceof HTMLSelectElement) {
+          durationEl.value = duration || '';
+        }
+
+        // Scroll to form and submit
+        form?.scrollIntoView({ behavior: 'smooth' });
+        setTimeout(() => {
+          if (form) {
+            const submitEvent = new SubmitEvent('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(submitEvent);
+          }
+        }, 500);
+      });
+    });
+  </script>
 </MainLayout>
