@@ -136,6 +136,13 @@ main {
   color: var(--text-primary);
 }
 
+.hero-description {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
 .tag {
   color: var(--accent);
   font-size: 0.875rem;
@@ -307,8 +314,28 @@ a:hover {
   text-decoration: underline;
 }
 
-/* Utilities */
+/* Utility Classes */
+.text-muted {
+  color: var(--text-muted);
+}
 
+.text-center {
+  text-align: center;
+}
+
+.mt-lg {
+  margin-top: 2rem;
+}
+
+.text-sm {
+  font-size: 0.9rem;
+}
+
+.text-note {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
