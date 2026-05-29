@@ -759,13 +759,23 @@ import MainLayout from '../layouts/MainLayout.astro';
         const style = btn.dataset.style;
         const duration = btn.dataset.duration;
 
-        document.getElementById('prompt').value = prompt;
-        document.getElementById('style').value = style;
-        document.getElementById('duration').value = duration;
+        const promptEl = document.getElementById('prompt');
+        const styleEl = document.getElementById('style');
+        const durationEl = document.getElementById('duration');
+
+        if (promptEl instanceof HTMLTextAreaElement) {
+          promptEl.value = prompt || '';
+        }
+        if (styleEl instanceof HTMLSelectElement) {
+          styleEl.value = style || '';
+        }
+        if (durationEl instanceof HTMLSelectElement) {
+          durationEl.value = duration || '';
+        }
 
         // Scroll to form and submit
         form?.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => form?.dispatchEvent(new Event('submit')), 500);
+        setTimeout(() => form?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })), 500);
       });
     });
   </script>
