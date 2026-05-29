@@ -775,7 +775,12 @@ import MainLayout from '../layouts/MainLayout.astro';
 
         // Scroll to form and submit
         form?.scrollIntoView({ behavior: 'smooth' });
-        setTimeout(() => form?.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true })), 500);
+        setTimeout(() => {
+          if (form) {
+            const submitEvent = new SubmitEvent('submit', { bubbles: true, cancelable: true });
+            form.dispatchEvent(submitEvent);
+          }
+        }, 500);
       });
     });
   </script>
