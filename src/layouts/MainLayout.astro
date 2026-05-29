@@ -1,11 +1,12 @@
 ---
 import '../styles/global.css';
+import ThemeToggle from '../components/ThemeToggle.astro';
 
 const { title = 'Auto Video', description = 'Build complete AI videos from a single prompt.' } = Astro.props;
 const links = [
   { href: '/', label: 'Home' },
   { href: '/create', label: 'Create' },
-  { href: '/demos', label: 'Demos' },
+  { href: '/gallery', label: 'Gallery' },
   { href: '/how-it-works', label: 'How It Works' },
   { href: '/testimonials', label: 'Testimonials' },
   { href: '/pricing', label: 'Pricing' },
@@ -22,7 +23,12 @@ const links = [
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#0b1020" />
+    <meta name="theme-color" content="#ffffff" />
+    <script>
+      // Set initial theme before rendering (prevents flash)
+      const savedTheme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -35,6 +41,7 @@ const links = [
             ))}
           </ul>
         </nav>
+        <ThemeToggle />
       </div>
     </header>
     <main class="container">
