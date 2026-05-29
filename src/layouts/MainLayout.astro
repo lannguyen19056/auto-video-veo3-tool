@@ -26,8 +26,17 @@ const links = [
     <meta name="theme-color" content="#ffffff" />
     <script>
       // Set initial theme before rendering (prevents flash)
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      document.documentElement.setAttribute('data-theme', savedTheme);
+      try {
+        if (typeof localStorage !== 'undefined') {
+          const savedTheme = localStorage.getItem('theme') || 'light';
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        } else {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      } catch (e) {
+        // Fallback if localStorage access fails
+        document.documentElement.setAttribute('data-theme', 'light');
+      }
     </script>
   </head>
   <body>
