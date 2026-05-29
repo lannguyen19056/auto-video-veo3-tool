@@ -434,6 +434,7 @@ a:hover {
   textarea,
   select {
     padding: 0.75rem;
+    /* 16px prevents iOS auto-zoom on focus */
     font-size: 16px;
   }
 
@@ -558,6 +559,7 @@ a:hover {
   textarea,
   select {
     padding: 0.65rem;
+    /* 16px prevents iOS auto-zoom on focus */
     font-size: 16px;
     border-radius: 6px;
   }
