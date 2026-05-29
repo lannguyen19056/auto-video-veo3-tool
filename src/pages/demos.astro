@@ -1,27 +1,13 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-
-const demos = [
-  { title: 'SaaS Product Launch', niche: 'Technology', duration: '00:30' },
-  { title: 'Travel Story Reel', niche: 'Tourism', duration: '00:45' },
-  { title: 'E-learning Promo', niche: 'Education', duration: '00:35' },
-  { title: 'Fitness Challenge Ad', niche: 'Wellness', duration: '00:25' },
-  { title: 'Restaurant Special Menu', niche: 'Food & Beverage', duration: '00:20' },
-  { title: 'Hiring Campaign', niche: 'Human Resources', duration: '00:40' }
-];
 ---
 
 <MainLayout title="Demo Gallery | Auto Video">
   <h1>Demo Gallery</h1>
-  <p>Explore sample outputs created from short text prompts.</p>
-  <section class="grid">
-    {demos.map((demo) => (
-      <article class="card">
-        <h3>{demo.title}</h3>
-        <p>Niche: {demo.niche}</p>
-        <p>Duration: {demo.duration}</p>
-        <a href="/create">Generate similar video</a>
-      </article>
-    ))}
+  <section class="panel">
+    <p>Explore sample outputs created from short text prompts. Our demo library showcases how Auto Video transforms ideas into professional video concepts across different industries and use cases.</p>
+    <p style="margin-top: 2rem; text-align: center; color: var(--muted);">
+      <strong>Ready to create your own?</strong> <a href="/create">Request early access</a> or <a href="/contact">contact us</a> to learn more.
+    </p>
   </section>
 </MainLayout>

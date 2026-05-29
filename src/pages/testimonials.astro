@@ -1,23 +1,13 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
-
-const reviews = [
-  { name: 'Emily Tran', role: 'Growth Lead', company: 'ScaleDesk', quote: 'We now create ad concepts 5x faster with better consistency.' },
-  { name: 'Daniel Carter', role: 'Founder', company: 'TripBoard', quote: 'The demo workflow helps us test multiple campaign angles in one afternoon.' },
-  { name: 'Aiko Martin', role: 'Content Manager', company: 'FitShift', quote: 'No-login access made onboarding effortless for freelance creators.' },
-  { name: 'Liam Nguyen', role: 'Product Marketer', company: 'NovaHR', quote: 'Auto Video gives us reliable scripts and scene ideas from a single prompt.' }
-];
 ---
 
 <MainLayout title="Customer Testimonials | Auto Video">
   <h1>What Customers Say</h1>
-  <section class="grid">
-    {reviews.map((review) => (
-      <article class="card">
-        <p>“{review.quote}”</p>
-        <h3>{review.name}</h3>
-        <p>{review.role}, {review.company}</p>
-      </article>
-    ))}
+  <section class="panel">
+    <p>Real feedback from teams that have experienced the Auto Video platform. We'll be sharing more customer stories as we grow.</p>
+    <p style="margin-top: 2rem; text-align: center; color: var(--muted);">
+      <strong>Have you used Auto Video?</strong> We'd love to hear from you. <a href="/contact">Get in touch</a> to share your experience.
+    </p>
   </section>
 </MainLayout>
