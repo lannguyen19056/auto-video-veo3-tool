@@ -1,12 +1,57 @@
 <section class="hero">
-  <p class="tag">Prompt ➜ Script ➜ Scenes ➜ Voice ➜ Final Video</p>
-  <h1>Build professional videos with AI in minutes</h1>
-  <p class="hero-description">
-    Auto Video transforms a single prompt into complete video concepts, professional scripts, and export-ready assets.
-    No login required. No setup needed. Start creating today.
-  </p>
-  <div class="cta-row">
-    <a class="button" href="/create">Request Early Access</a>
-    <a class="button button-secondary" href="/demos">View Gallery</a>
+  <div class="hero-content">
+    <span class="tag">Prompt ➜ Script ➜ Scenes ➜ Voice ➜ Final Video</span>
+    <h1>Build complete videos with AI in minutes</h1>
+    <p>
+      Auto Video turns one prompt into a polished video concept, voice-over timeline, and export-ready result.
+      No login, no setup, just describe your idea and start.
+    </p>
+    <div class="cta-row">
+      <a class="button button-primary" href="/create">
+        <span>✨ Try Mock Generator</span>
+      </a>
+      <a class="button button-secondary" href="/demos">
+        <span>📽️ View Demo Gallery</span>
+      </a>
+    </div>
   </div>
 </section>
+
+<style>
+  .hero {
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero p {
+    max-width: 600px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: 2rem 1rem;
+    }
+
+    .hero h1 {
+      font-size: 1.8rem;
+    }
+
+    .cta-row {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-row .button {
+      width: 100%;
+      text-align: center;
+    }
+  }
+</style>
