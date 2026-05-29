@@ -19,14 +19,15 @@ const links = [
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#0b1020" />
   </head>
   <body>
     <header class="site-header">
       <div class="container nav-wrap">
-        <a class="logo" href="/">Auto Video</a>
+        <a class="logo" href="/">🎬 Auto Video</a>
         <nav>
           <ul>
             {links.map((link) => (
@@ -41,8 +42,20 @@ const links = [
     </main>
     <footer class="site-footer">
       <div class="container">
-        <p>© {new Date().getFullYear()} Auto Video. No login required.</p>
+        <p>© {new Date().getFullYear()} Auto Video. Prompt to video in seconds. No login required.</p>
       </div>
     </footer>
   </body>
 </html>
+
+<style>
+  :global(body) {
+    scroll-behavior: smooth;
+  }
+
+  :global(header) {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+</style>
